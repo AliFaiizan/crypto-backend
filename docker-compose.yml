@@ -1,15 +1,17 @@
-version: '3.8'
+
 services:
-  dev-db:
-    image: postgres
+  mongodb:
+    image: mongo:latest
     environment:
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
-      - POSTGRES_DB=dev
+      - MONGO_INITDB_ROOT_USERNAME=docker
+      - MONGO_INITDB_ROOT_PASSWORD=mongopw
     ports:
-      - "5432:5432"
+      - 27017:27017
     volumes:
-      - ./data/dev-db:/var/lib/postgresql/data
+      - data:/data/db
+  myapp:
+    image: [YOUR-APP-IMAGE]
+    
     restart: always
     depends_on:
       - dev-app
