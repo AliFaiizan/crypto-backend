@@ -1,21 +1,31 @@
-import { Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import bcrypt from 'bcrypt'
 
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
 
-@Controller("auth")
-export class AuthController{
+  @Post('signUp')
+  async signUp(
+   @Body('email') email: string,
+   @Body('password') password: string,
+   @Body('confirmPassword') confirmPassword: string) {
 
-    constructor(private  authService: AuthService){}
+    if(password !== confirmPassword){
+        return {message:'Passwords do not match'}
 
-    @Post('signUp')
-    signUp(){
-        this.authService.signUp()
     }
-    
 
-    @Post('login')
-    login(){
-        this.authService.login()
-    }
-    
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+
+
+    this.authService.createUser(email, password);
+  }
+
+  @Post('login')
+  login() {
+    this.authService.login();
+  }
 }

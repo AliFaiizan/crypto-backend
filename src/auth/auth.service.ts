@@ -1,13 +1,14 @@
-import { Injectable } from "@nestjs/common";
+import { Body, Injectable } from "@nestjs/common";
+
 
 @Injectable({})
-export class AuthService{
+export class AuthService {
+  async createUser (email:string,password:string){
 
-    login(){
-        return "login";
-    }
+    return { name:'Ali',hash:'titbit'}
+  }
 
-    signUp(){
-        return "signUp";
-    }
+  login() {
+    return 'login';
+  }
 }
