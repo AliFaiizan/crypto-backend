@@ -12,16 +12,21 @@ export class AuthController {
    @Body('password') password: string,
    @Body('confirmPassword') confirmPassword: string) {
 
-    if(password !== confirmPassword){
-        return {message:'Passwords do not match'}
+    // if(password !== confirmPassword){
+    //     return {message:'Passwords do not match'}
 
-    }
+    // }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    //const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log(email, password, confirmPassword)
 
 
 
-    this.authService.createUser(email, password);
+   const createdUser=this.authService.createUser(email, password);
+
+
+    return createdUser;
   }
 
   @Post('login')

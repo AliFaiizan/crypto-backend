@@ -8,22 +8,20 @@ export class User {
 id:String;
 
 @Prop()
-  email: {
-    type: String,
-    required: true,
-  }
+email: string;
 
-  @Prop()
-  password: {
-    type: String,
-    required: true,
-  }
-  @Prop()
-  resetToken: String
-  @Prop()
-  resetTokenExpire: Date
-  @Prop()
-  createdAt: Date
+@Prop()
+password: string;
+
+@Prop()
+resetToken: string
+
+@Prop()
+resetTokenExpire: Date
+
+@Prop()
+createdAt: Date
+
 }
 
 export type UserDocument = User & Document;
