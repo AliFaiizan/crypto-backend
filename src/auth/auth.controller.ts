@@ -1,10 +1,10 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('signUp')
   async signUp(
@@ -12,22 +12,17 @@ export class AuthController {
    @Body('password') password: string,
    @Body('confirmPassword') confirmPassword: string) {
 
-    // if(password !== confirmPassword){
-    //     return {message:'Passwords do not match'}
+    if(password !== confirmPassword){
+        return {message:'Passwords do not match'}
 
-    // }
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    //const hashedPassword = await bcrypt.hash(password, 10);
+    const createdUser= await this.authService.createUser(email, hashedPassword);
 
-    console.log(email, password, confirmPassword)
-
-
-
-   const createdUser=this.authService.createUser(email, password);
-
-
-    return createdUser;
-  }
+    return {message:"Sucessfully Signed Up",
+            userId:createdUser._id};
+    }
 
   @Post('login')
   login() {

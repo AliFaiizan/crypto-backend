@@ -9,7 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     AuthModule,
     UserModule,
-    MongooseModule.forRoot('mongodb://docker:mongopw@localhost:49153/'),
+    MongooseModule.forRoot('mongodb://docker:mongopw@localhost:49156'),
   ],
 })
 export class AppModule {}

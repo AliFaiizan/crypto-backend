@@ -12,8 +12,9 @@ export class AuthService {
 
 
   async createUser (email:string,password:string,){
-
-    return this.userModel.find({})
+    const user= await this.userModel.create({email,password});
+    
+    return await user.save();
   }
 
   login() {
