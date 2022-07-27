@@ -25,10 +25,11 @@ export class AuthController {
     }
 
   @Post('login')
-  login(
+  async login(
     @Body('email') email: string,
     @Body('password') password: string, 
     ) {
-    this.authService.login(email,password);
+    const result = await this.authService.login(email,password);
+    return result;
   }
 }
