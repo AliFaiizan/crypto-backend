@@ -8,28 +8,39 @@ export class AuthController {
 
   @Post('signUp')
   async signUp(
-   @Body('email') email: string,
-   @Body('password') password: string,
-   @Body('confirmPassword') confirmPassword: string) {
-
-    if(password !== confirmPassword){
-        return {message:'Passwords do not match'}
-
+    @Body('email') email: string,
+    @Body('password') password: string,
+    @Body('confirmPassword') confirmPassword: string,
+  ) {
+    if (password !== confirmPassword) {
+      return { message: 'Passwords do not match' };
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const createdUser= await this.authService.createUser(email, hashedPassword);
+    const createdUser = await this.authService.createUser(
+      email,
+      hashedPassword,
+    );
 
-    return {message:"Sucessfully Signed Up",
-            userId:createdUser._id};
-    }
+    return { message: 'Sucessfully Signed Up', userId: createdUser._id };
+  }
 
   @Post('login')
   async login(
     @Body('email') email: string,
-    @Body('password') password: string, 
-    ) {
-    const result = await this.authService.login(email,password);
+    @Body('password') password: string,
+  ) {
+    const result = await this.authService.login(email, password);
+    return result;
+  }
+
+  @Post('forgetPassword')
+  async forgetPassword(
+    @Body('email') email: string,
+  ) {
+    const result = await this.authService.forgetPassword(email);
+   
+
     return result;
   }
 }

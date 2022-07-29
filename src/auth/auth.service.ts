@@ -30,4 +30,13 @@ export class AuthService {
     // }
     return {token:'thisis login token'}
   }
+
+  async forgetPassword(email:string){
+    const user = await this.userModel.findOne({email});
+    if(!user){
+        return {message:'User not found'}
+
+    }
+    return {message:'Password reset link has been sent to your email'}
+  }
 }
