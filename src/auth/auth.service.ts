@@ -11,7 +11,7 @@ export class AuthService {
   constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) {
 
   }
-
+  //this is for signUP
   async createUser (email:string,password:string,){
     const user= await this.userModel.create({email,password});
     
