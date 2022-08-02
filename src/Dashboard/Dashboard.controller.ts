@@ -1,39 +1,34 @@
 import { Controller, Get, Injectable } from '@nestjs/common';
 ;
+import { DashboardService } from './Dashboard.service';
 
 @Controller('Dashboard')
 export class DashboardController {
+  constructor(private readonly DashboardService:DashboardService) {}
 
-    constructor() { }
+  @Get()
+  async getDashboard() {
+   return await this.DashboardService.getDashboard();
+  }
 
-    @Get()
-    async getDashboard() {
+  @Get('rules')
+  async getRules() {
+    await this.DashboardService.getRules();
+  }
 
-        return {
-            message: 'dashboard data'
-        };
-    }
+  @Get('tradingPatterns')
+  async getTradingPatterns() {
+   return this.DashboardService.getTradingPatterns();
+  }
 
-    @Get('rules')    
-    async getRules() {
-            
-            return {
-                message: 'rules'
-            };
-    }
+  @Get('shortAnouncments')
+  async getShortAnouncments() {
+   return this.DashboardService.getShortAnouncments();
 
-    @Get('tradingPatterns')
-    async getTradingPatterns() {
-        return {
-            message: 'trading patterns'
-        };
-    }
+  }
 
-    @Get('shortAnouncments')
-    async getShortAnouncments() {
-        return {
-            message: 'short anouncments'
-        };
-    }
-
+  @Get('education')
+  async getEducationContent() {
+   return this.DashboardService.getEducationContent();
+  }
 }
