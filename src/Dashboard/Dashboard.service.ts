@@ -11,6 +11,8 @@ export class DashboardService {
   }
 
   async getRules() {
+
+    
     return {
       message: 'rules',
     };

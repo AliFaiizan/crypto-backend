@@ -8,4 +8,4 @@ import { DashboardService } from './Dashboard.service';
   controllers: [DashboardController],
   providers: [DashboardService],
 })
-export class SignalModule {}
+export class DashboardModule {}
