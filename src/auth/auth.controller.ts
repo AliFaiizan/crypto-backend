@@ -1,6 +1,5 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, Res } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import * as bcrypt from 'bcrypt'
 
 @Controller('auth')
 export class AuthController {
@@ -15,11 +14,10 @@ export class AuthController {
     if (password !== confirmPassword) {
       return { message: 'Passwords do not match' };
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     const createdUser = await this.authService.createUser(
       email,
-      hashedPassword,
+      password,
     );
 
     return { message: 'Sucessfully Signed Up', userId: createdUser._id };
@@ -29,9 +27,12 @@ export class AuthController {
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
+    @Res({passthrough:true}) res: any,// this is for express responce
   ) {
-    const result = await this.authService.login(email, password);
-    return result;
+    const token = await this.authService.login(email, password);
+
+    res.cookie('token', token, {httpOnly:true});
+    return { message: 'Sucessfully Logged In' };
   }
 
   @Post('forgetPassword')
