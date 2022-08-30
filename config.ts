@@ -1,1 +1,1 @@
-export const MONGO_URL = "mongodb://docker:mongopw@localhost:49153";
+export const MONGO_URL = "mongodb://docker:mongopw@localhost:49153/cryptobox";

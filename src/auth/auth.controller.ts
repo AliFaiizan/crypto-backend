@@ -1,5 +1,6 @@
 import { Body, Controller, Post, Res } from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import { SingupUserDto } from "./dtos/signUp-dto";
 
 @Controller('auth')
 export class AuthController {
@@ -7,9 +8,7 @@ export class AuthController {
 
   @Post('signUp')
   async signUp(
-    @Body('email') email: string,
-    @Body('password') password: string,
-    @Body('confirmPassword') confirmPassword: string,
+    @Body() {email,password,confirmPassword}: SingupUserDto,
   ) {
     if (password !== confirmPassword) {
       return { message: 'Passwords do not match' };

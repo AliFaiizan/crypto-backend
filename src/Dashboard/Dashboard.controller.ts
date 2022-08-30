@@ -4,11 +4,11 @@ import { DashboardService } from './Dashboard.service';
 
 @Controller('Dashboard')
 export class DashboardController {
-  constructor(private readonly DashboardService:DashboardService) {}
+  constructor(private readonly DashboardService: DashboardService) {}
 
   @Get()
   async getDashboard() {
-   return await this.DashboardService.getDashboard();
+    return await this.DashboardService.getDashboard();
   }
 
   @Get('rules')
@@ -18,17 +18,16 @@ export class DashboardController {
 
   @Get('tradingPatterns')
   async getTradingPatterns() {
-   return this.DashboardService.getTradingPatterns();
-  }
-
-  @Get('shortAnouncments')
-  async getShortAnouncments() {
-   return this.DashboardService.getShortAnouncments();
-
+    return this.DashboardService.getTradingPatterns();
   }
 
   @Get('education')
   async getEducationContent() {
-   return this.DashboardService.getEducationContent();
+    return this.DashboardService.getEducationContent();
+  }
+
+  @Get('halloffame')
+  async getHallOfFame() {
+    return this.DashboardService.getHallOfFame();
   }
 }

@@ -11,8 +11,6 @@ export class DashboardService {
   }
 
   async getRules() {
-
-    
     return {
       message: 'rules',
     };
@@ -30,8 +28,13 @@ export class DashboardService {
     };
   }
 
-  
   async getEducationContent() {
+    return {
+      message: 'education content',
+    };
+  }
+
+  async getHallOfFame() {
     return {
       message: 'education content',
     };
