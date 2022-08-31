@@ -1,17 +1,21 @@
-import { Body, Controller, Post, Res } from "@nestjs/common";
+import { Body, Controller, Post, Res,BadRequestException ,} from "@nestjs/common";
+import { Serialize } from "interceptor/serialize.interceptor";
 import { AuthService } from "./auth.service";
-import { SingupUserDto } from "./dtos/signUp-dto";
+import { SingupUserDto, LoginUserDto } from "./dtos/auth.dto";
+
+import { UserDto } from "./dtos/user.dto";
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Serialize(UserDto)
   @Post('signUp')
   async signUp(
     @Body() {email,password,confirmPassword}: SingupUserDto,
   ) {
     if (password !== confirmPassword) {
-      return { message: 'Passwords do not match' };
+       throw new BadRequestException('Password Doesnot Match');
     }
 
     const createdUser = await this.authService.createUser(
@@ -19,13 +23,12 @@ export class AuthController {
       password,
     );
 
-    return { message: 'Sucessfully Signed Up', userId: createdUser._id };
+    return  createdUser;
   }
 
   @Post('login')
   async login(
-    @Body('email') email: string,
-    @Body('password') password: string,
+  @Body() {email,password}: LoginUserDto,
     @Res({passthrough:true}) res: any,// this is for express responce
   ) {
     const token = await this.authService.login(email, password);

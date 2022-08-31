@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable , NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User , UserDocument } from "./user.schema";
@@ -18,7 +18,7 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user= await this.userModel.create({email,hashedPassword});
+    const user= await this.userModel.create({email,password:hashedPassword});
     
     return await user.save();
   }
@@ -27,7 +27,7 @@ export class AuthService {
 
     const user = await this.userModel.findOne({email});
     if(!user){
-        return {message:'User not found'}
+        throw new NotFoundException('User Does Not Exists Try Signing Up First')
 
     }
     if(!await bcrypt.compare(password,user.password)){
@@ -42,7 +42,9 @@ export class AuthService {
   async forgetPassword(email:string){
     const user = await this.userModel.findOne({email});
     if(!user){
-        return {message:'User not found'}
+         throw new NotFoundException(
+           'User Does Not Exists',
+         );
 
     }
     return {message:'Password reset link has been sent to your email'}
