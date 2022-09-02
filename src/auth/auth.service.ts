@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string) {
-    const user = await this.UserService.findUser(email);
+    const user = await this.UserService.findUser({email});
     if (!user) {
       throw new NotFoundException('User Does Not Exists Try Signing Up First');
     }

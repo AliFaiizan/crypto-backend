@@ -6,23 +6,25 @@ import {
   Res,
   Req,
   Session,
-  Header,
+  Headers,
   BadRequestException,
 } from '@nestjs/common';
 import { Serialize } from 'interceptor/serialize.interceptor';
 import { UserService } from './user.service';
 import { AuthService } from 'src/auth/auth.service';
 import { SingupUserDto, LoginUserDto } from './dtos/auth.dto';
-
+ 
 import { UserDto } from './dtos/user.dto';
+import { JwtService } from '@nestjs/jwt';
 
 
 @Controller('auth')
 export class UserController {
   constructor(
     private readonly authService: AuthService,
-    private readonly UserService:UserService
-    ) {}
+    private readonly UserService: UserService,
+    private readonly JwtService:JwtService
+  ) {}
 
   @Serialize(UserDto)
   @Post('signUp')
@@ -48,15 +50,20 @@ export class UserController {
   }
 
   @Get('profile')
-  async myProfile(@Req() req:any){
-    console.log(req)
+  @Serialize(UserDto)
+  async myProfile(@Req() req: any, @Headers('cookie') token: any) {
+    const newToken= token.split('=')[1]
+     const res= await this.JwtService.verify(newToken)
+     console.log(res)
+    const user= await this.UserService.findUser({_id:res.id});
+
+    return user;
   }
 
   @Post('forgetPassword')
   async forgetPassword(@Body('email') email: string) {
     //const result = await this.authService.forgetPassword(email);
-
-   // return result;
+    // return result;
   }
 
   @Post('logout')

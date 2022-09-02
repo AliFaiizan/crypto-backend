@@ -24,8 +24,11 @@ export class UserService {
     return await user.save();
   }
 
-  async findUser(email: string) {
-    const user = await this.userModel.findOne({ email });
+  async findUser(filter:object) {
+    const user = await this.userModel.findOne(filter);
+    if(!user){
+      throw new NotFoundException('Couldnot find user')
+    }
     return user;
   }
 
