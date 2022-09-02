@@ -3,25 +3,26 @@ import {Schema,Prop, SchemaFactory} from "@nestjs/mongoose"
 
 @Schema()
 export class User {
+  @Prop()
+  id: String;
 
-@Prop()
-id:String;
+  @Prop()
+  email: string;
 
-@Prop()
-email: string;
+  @Prop()
+  password: string;
 
-@Prop()
-password: string;
+  @Prop()
+  token: string;
 
-@Prop()
-resetToken: string
+  @Prop()
+  resetToken: string;
 
-@Prop()
-resetTokenExpire: Date
+  @Prop()
+  resetTokenExpire: Date;
 
-@Prop()
-createdAt: Date
-
+  @Prop()
+  createdAt: Date;
 }
 
 export type UserDocument = User & Document;
