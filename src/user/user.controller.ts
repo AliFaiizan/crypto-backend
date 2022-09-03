@@ -52,12 +52,9 @@ export class UserController {
   @Get('profile')
   @Serialize(UserDto)
   async myProfile(@Req() req: any, @Headers('cookie') token: any) {
-    const newToken= token.split('=')[1]
-     const res= await this.JwtService.verify(newToken)
-     console.log(res)
-    const user= await this.UserService.findUser({_id:res.id});
+   
 
-    return user;
+    return ;
   }
 
   @Post('forgetPassword')
