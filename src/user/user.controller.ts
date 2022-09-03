@@ -7,6 +7,7 @@ import {
   Req,
   Session,
   Headers,
+  UseInterceptors,
   BadRequestException,
 } from '@nestjs/common';
 import { Serialize } from 'interceptor/serialize.interceptor';
@@ -16,7 +17,8 @@ import { SingupUserDto, LoginUserDto } from './dtos/auth.dto';
  
 import { UserDto } from './dtos/user.dto';
 import { JwtService } from '@nestjs/jwt';
-
+import { CurrentUser } from './decorator/current-user.decorator';
+import { CurrentUserInterceptor } from './interceptors/auth.interceptor';CurrentUserInterceptor
 
 @Controller('auth')
 export class UserController {
@@ -51,10 +53,11 @@ export class UserController {
 
   @Get('profile')
   @Serialize(UserDto)
-  async myProfile(@Req() req: any, @Headers('cookie') token: any) {
+  @UseInterceptors(CurrentUserInterceptor)
+  async myProfile(@CurrentUser() user:any) {
    
 
-    return ;
+    return user;
   }
 
   @Post('forgetPassword')

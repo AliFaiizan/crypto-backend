@@ -5,6 +5,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { User, UserSchema } from './user.schema';
 import { AuthService } from 'src/auth/auth.service';
+import { CurrentUserInterceptor } from './interceptors/auth.interceptor';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { AuthService } from 'src/auth/auth.service';
     }),
   ],
   controllers: [UserController],
-  providers: [UserService,AuthService],
+  providers: [UserService,AuthService,CurrentUserInterceptor],
 })
 export class UserModule {}
