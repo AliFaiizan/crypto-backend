@@ -18,7 +18,9 @@ import { SingupUserDto, LoginUserDto } from './dtos/auth.dto';
 import { UserDto } from './dtos/user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { CurrentUser } from './decorator/current-user.decorator';
-import { CurrentUserInterceptor } from './interceptors/auth.interceptor';CurrentUserInterceptor
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { User } from './user.schema';
+
 
 @Controller('auth')
 export class UserController {
@@ -52,9 +54,9 @@ export class UserController {
   }
 
   @Get('profile')
-  @Serialize(UserDto)
-  @UseInterceptors(CurrentUserInterceptor)
-  async myProfile(@CurrentUser() user:any) {
+  @Serialize(UserDto) // factoring outgoing requests
+  @UseInterceptors(AuthInterceptor)  // getting uesr information
+  async myProfile(@CurrentUser() user:User) {
    
 
     return user;

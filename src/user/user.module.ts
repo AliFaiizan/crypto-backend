@@ -5,8 +5,8 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { User, UserSchema } from './user.schema';
 import { AuthService } from 'src/auth/auth.service';
-import { CurrentUserInterceptor } from './interceptors/auth.interceptor';
-
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import  {APP_INTERCEPTOR} from '@nestjs/core' // for making global inter ceptor
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
@@ -16,6 +16,6 @@ import { CurrentUserInterceptor } from './interceptors/auth.interceptor';
     }),
   ],
   controllers: [UserController],
-  providers: [UserService,AuthService,CurrentUserInterceptor],
+  providers: [UserService,AuthService,AuthInterceptor],
 })
 export class UserModule {}

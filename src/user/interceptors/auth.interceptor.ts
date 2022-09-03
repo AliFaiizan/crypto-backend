@@ -3,14 +3,14 @@ import {
     ExecutionContext,
     CallHandler,
     Injectable,
-    NotFoundException
+    ForbiddenException
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from '../user.service';
 
 @Injectable()
-export class CurrentUserInterceptor implements NestInterceptor{
+export class AuthInterceptor implements NestInterceptor{
 
     constructor(
         private UserService:UserService,
@@ -21,16 +21,18 @@ export class CurrentUserInterceptor implements NestInterceptor{
 
         const cookie = request.headers?.cookie;
 
-        console.log(cookie)
-
-         const newToken = cookie.split('=')[1];
-         const res = await this.JwtService.verify(newToken);
+        if(!cookie){
+           throw new ForbiddenException("Please login first");
+        }
+         const token = cookie.split('=')[1];
+         const res = await this.JwtService.verify(token);
          const user = await this.UserService.findUser({ _id: res.id });
 
-         if(!user){
-            throw new NotFoundException('Please login first')
-         }
-         request.user=user;
+        if(!user){
+            throw new ForbiddenException("User doesnot exists")
+        }
+        
+        request.user=user;
 
         return next.handle();
     }
