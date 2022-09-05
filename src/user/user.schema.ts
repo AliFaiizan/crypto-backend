@@ -22,6 +22,9 @@ export class User {
   resetTokenExpire: Date;
 
   @Prop()
+  isAdmin:boolean;
+
+  @Prop()
   createdAt: Date;
 }
 

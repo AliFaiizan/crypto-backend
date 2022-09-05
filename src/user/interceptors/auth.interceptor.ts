@@ -22,14 +22,14 @@ export class AuthInterceptor implements NestInterceptor{
         const cookie = request.headers?.cookie;
 
         if(!cookie){
-           throw new ForbiddenException("Please login first");
+           throw new ForbiddenException("You are not Authorized");
         }
          const token = cookie.split('=')[1];
          const res = await this.JwtService.verify(token);
          const user = await this.UserService.findUser({ _id: res.id });
 
         if(!user){
-            throw new ForbiddenException("User doesnot exists")
+            throw new ForbiddenException("You are not Authroized")
         }
         
         request.user=user;

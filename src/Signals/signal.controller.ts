@@ -1,6 +1,7 @@
-import {Body, Controller,Delete,Get,NotFoundException,Param,Patch,Post } from "@nestjs/common";
+import {Body, Controller,Delete,ForbiddenException,Get,NotFoundException,Param,Patch,Post, Req, UseInterceptors } from "@nestjs/common";
 import { SignalService } from "./signal.service";
 import { Signal, SignalDocument } from "./signal.schema";
+import { AuthInterceptor } from "src/user/interceptors/auth.interceptor";
 
 @Controller()
 export class SignalController {
@@ -14,7 +15,11 @@ export class SignalController {
   }
 
   @Post('/signal')
-  async postSignal(@Body() body: SignalDocument) {
+  
+  async postSignal(@Body() body: SignalDocument,@Req() req:any) {
+    if(!req.user.isAdmin){
+      throw new ForbiddenException('you are not authroized')
+    }
     return await this.SingnalService.createSignal(body);
   }
 

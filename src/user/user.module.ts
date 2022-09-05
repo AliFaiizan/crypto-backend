@@ -17,5 +17,6 @@ import  {APP_INTERCEPTOR} from '@nestjs/core' // for making global inter ceptor
   ],
   controllers: [UserController],
   providers: [UserService,AuthService,AuthInterceptor],
+  exports:[UserService]
 })
 export class UserModule {}

@@ -36,6 +36,4 @@ export class SignalService {
         return await this.signalModel.deleteOne({_id:id})
     }
 
-
-
 }
