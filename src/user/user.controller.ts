@@ -4,9 +4,6 @@ import {
   Post,
   Get,
   Res,
-  Req,
-  Session,
-  Headers,
   UseInterceptors,
   BadRequestException,
 } from '@nestjs/common';
@@ -58,7 +55,6 @@ export class UserController {
   @UseInterceptors(AuthInterceptor)  // getting uesr information
   async myProfile(@CurrentUser() user:User) {
    
-
     return user;
   }
 

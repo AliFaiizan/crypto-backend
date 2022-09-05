@@ -12,6 +12,7 @@ import { MONGO_URL } from 'config';
   imports: [
     AuthModule,
     UserModule,
+    SignalModule,
     MongooseModule.forRoot(MONGO_URL),
   ],
 })
