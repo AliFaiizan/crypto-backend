@@ -27,7 +27,7 @@ export class UserController {
     private readonly JwtService:JwtService
   ) {}
 
-  @Serialize(UserDto)
+  @Serialize(UserDto) //return modified responce
   @Post('signUp')
   async signUp(@Body() { email, password, confirmPassword }: SingupUserDto) {
     if (password !== confirmPassword) {

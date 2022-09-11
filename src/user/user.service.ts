@@ -8,7 +8,7 @@ import { Model } from 'mongoose';
 import { User, UserDocument } from '../user/user.schema';
 
 
-@Injectable({})
+@Injectable()
 export class UserService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
@@ -36,11 +36,4 @@ export class UserService {
     return await this.userModel.findOneAndUpdate(filter,query)
   }
 
-  async forgetPassword(email: string) {
-    const user = await this.userModel.findOne({ email });
-    if (!user) {
-      throw new NotFoundException('User Does Not Exists');
-    }
-    return { message: 'Password reset link has been sent to your email' };
-  }
 }

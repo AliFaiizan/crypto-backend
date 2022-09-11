@@ -2,11 +2,15 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { SignalDocument, Signal } from "./signal.schema";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { AuthService } from "src/auth/auth.service";
+import { UserService } from "src/user/user.service";
 
 @Injectable({})
 export class SignalService {
     constructor(
     @InjectModel(Signal.name) private readonly signalModel: Model<SignalDocument>,
+        private readonly AuthService:AuthService,
+        private readonly UserService:UserService
     ){}
 
     async getSignals() {

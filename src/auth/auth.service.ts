@@ -27,7 +27,7 @@ export class AuthService {
       throw new BadRequestException('Invalid Password');
     }
 
-    const jwtToken = await this.jwtService.signAsync({ id: user._id });
+    const jwtToken = await this.jwtService.signAsync(user.isAdmin?{ id: user._id,isAdmin:true }:{id:user._id});
     await this.UserService.findandUpdate(
       { _id: user._id },
       { token: jwtToken },

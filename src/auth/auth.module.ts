@@ -13,7 +13,8 @@ import { UserService } from "src/user/user.service";
     JwtModule.register({secret:'Thisissparta',signOptions:{expiresIn:'1h'}}),
    ],
     controllers:[],
-    providers:[AuthService,UserService]
+    providers:[AuthService,UserService],
+    exports:[AuthService]   
  })
  export class AuthModule{
 
