@@ -1,11 +1,13 @@
 import {Body, Controller,Delete,ForbiddenException,Get,NotFoundException,Param,Patch,Post, Req, UseInterceptors } from "@nestjs/common";
 import { SignalService } from "./signal.service";
+import { DefiService } from "./defi.service";
 import { Signal, SignalDocument } from "./signal.schema";
 import { AuthInterceptor } from "src/user/interceptors/auth.interceptor";
 import { CurrentUser } from "src/user/decorator/current-user.decorator";
 @Controller()
 export class SignalController {
-  constructor(private SingnalService: SignalService) {}
+  constructor(private SingnalService: SignalService,
+           private readonly DefiService:DefiService) {}
 
   @Get('/signal')
   async getSignals() {
@@ -31,5 +33,10 @@ export class SignalController {
   @Delete('/signal/:id')
   async deleteSignal(@Param('id') id: string) {
     return await this.SingnalService.deleteSignal(id);
+  }
+
+  @Get('/defi')
+  async getDefiProjects() {
+    return this.DefiService.getDefiProjects();
   }
 }
