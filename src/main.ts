@@ -10,5 +10,8 @@ async function bootstrap() {
     )
   )
   await app.listen(4000);
+
+  //has to to firebase notification
+  //to will do later
 }
 bootstrap();
