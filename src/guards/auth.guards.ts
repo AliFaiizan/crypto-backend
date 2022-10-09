@@ -3,6 +3,8 @@ import { Observable } from "rxjs";
 import { UserService } from "src/user/user.service";
 import { JwtService } from "@nestjs/jwt";
 
+//this is used for authenticated route
+
 // export class AuthGuard implements CanActivate {
 //   constructor(private UserService: UserService, private JwtService: JwtService){};
 
