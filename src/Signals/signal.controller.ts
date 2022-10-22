@@ -7,7 +7,7 @@ import { CurrentUser } from "src/user/decorator/current-user.decorator";
 @Controller()
 export class SignalController {
   constructor(private SingnalService: SignalService,
-           private readonly DefiService:DefiService) {}
+          ) {}
 
   @Get('/signal')
   async getSignals() {
@@ -37,6 +37,6 @@ export class SignalController {
 
   @Get('/defi')
   async getDefiProjects() {
-    return this.DefiService.getDefiProjects();
+    
   }
 }

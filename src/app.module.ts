@@ -6,7 +6,7 @@ import {SignalModule} from './signals/signal.module';
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { MONGO_URL } from 'config';
-import { DefiModule } from './defi/defi.module';
+// import { DefiModule } from './defi/defi.module';
 
 
 @Module({
@@ -15,7 +15,7 @@ import { DefiModule } from './defi/defi.module';
     UserModule,
     SignalModule,
     MongooseModule.forRoot(MONGO_URL),
-    DefiModule,
+
   ],
 })
 export class AppModule {}
