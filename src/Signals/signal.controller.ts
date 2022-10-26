@@ -15,7 +15,7 @@ export class SignalController {
 
     return signals;
   }
-
+ //for posting signal
   @Post('/signal')
   @UseInterceptors(AuthInterceptor)
   async createSignal(@Body() body: SignalDocument, @CurrentUser() user: any) {
@@ -24,17 +24,19 @@ export class SignalController {
     }
     return await this.SingnalService.createSignal(body);
   }
-
+  //for updating signal
   @Patch('/signal/:id')
   async updateSignal(@Body() body: any, @Param('id') id: string) {
     return await this.SingnalService.updateSignal(id, body);
   }
-
+  //for deleting signal
   @Delete('/signal/:id')
   async deleteSignal(@Param('id') id: string) {
     return await this.SingnalService.deleteSignal(id);
   }
 
+
+  //for getting all the dfi projects
   @Get('/defi')
   async getDefiProjects() {
     
