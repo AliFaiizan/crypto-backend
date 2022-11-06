@@ -1,14 +1,9 @@
 
-
-
 const sgMail = require('@sendgrid/mail')
 
 const {EMAIL}=process.env;
 
 sgMail.setApiKey(process.env.SENDGRID_VERIFYEMAIL_URI);
-
-
-
 
 module.exports.SendGridVerificationEmail=(targetEmail,name,url) => { 
     const msg = {
