@@ -34,7 +34,7 @@ app.use(express.json())
 
 //This will dynamically set routes
 readdirSync('./Routes').map((r) => { 
-    app.use('/api/',require('./Routes/'+r))
+    app.use(require('./Routes/'+r))
  })
 
 ,
