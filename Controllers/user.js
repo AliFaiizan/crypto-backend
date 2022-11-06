@@ -15,22 +15,6 @@ module.exports.register=async(req,res,next) => {
      }
 
       // for generating username if already exists
-    let isValid = false;
-    let usrn=req.body.user_name
-    do {
-        usernameExists = await User.findOne({ user_name: usrn});
-        if(usernameExists===null){
-            isValid=true;
-        }else if (usernameExists) {
-        usrn += ( new Date() * Math.random())
-            .toString()
-            .substring(0, 1);
-        } else {
-            isValid = true;
-        }
-    } while (!isValid);
-    
-    req.body["user_name"] = usrn;
 
     try{
         
