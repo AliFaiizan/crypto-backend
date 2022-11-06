@@ -12,6 +12,12 @@ module.exports.getSignal = async (req, res, next) => {
 
 };
 
+module.exports.postSignal = async (req, res, next) => {
+  const errors = validationResult(req);
 
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+};
 
 

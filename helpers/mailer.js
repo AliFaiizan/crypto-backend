@@ -1,10 +1,9 @@
-const nodemailer= require('nodemailer');
 
-const {google} = require('googleapis');
+
 
 const sgMail = require('@sendgrid/mail')
 
-const {EMAIL,MAILING_ID,MAILING_REFRESH,MAILING_SECRET,REDIRECT_URI}=process.env;
+const {EMAIL}=process.env;
 
 sgMail.setApiKey(process.env.SENDGRID_VERIFYEMAIL_URI);
 

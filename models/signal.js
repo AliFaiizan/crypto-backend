@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const signalSchema = mongoose.Schema(
-  
+  {
+    name:String
+  },
   {
     timestamps: true,
   }

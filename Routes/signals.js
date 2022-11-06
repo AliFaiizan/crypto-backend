@@ -16,7 +16,7 @@ router.get(
 //create Signal
 router.post(
   "/signal",
-  UserController.register
+  SignalController.postSignal
 );
 
 
