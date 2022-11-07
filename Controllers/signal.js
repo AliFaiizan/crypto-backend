@@ -34,5 +34,3 @@ module.exports.postSignal = async (req, res, next) => {
     console.log('There was an error white fetching signal',err)
   }
 };
-
-
