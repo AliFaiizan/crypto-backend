@@ -8,7 +8,7 @@ services:
         environment:
             MONGO_INITDB_ROOT_USERNAME: ali
             MONGO_INITDB_ROOT_PASSWORD: ali
-            MONGO_INITDB_DATABASE: socialnetwork
+            MONGO_INITDB_DATABASE: cryptobox
         ports:
             - 27017:27017
         volumes:
