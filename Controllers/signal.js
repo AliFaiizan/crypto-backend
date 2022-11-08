@@ -34,3 +34,44 @@ module.exports.postSignal = async (req, res, next) => {
     console.log('There was an error white fetching signal',err)
   }
 };
+
+
+module.exports.updateSignal = async (req, res, next) => {
+  //   const errors = validationResult(req);
+
+  //   if (!errors.isEmpty()) {
+  //     return res.status(400).json({ errors: errors.array() });
+  //   }
+
+  const signal = req.body;
+
+  try {
+    await Signal.create(signal);
+
+    res.status(400).json({
+      message: `Sucessfully created the ${signal.name} signal`,
+    });
+  } catch (err) {
+    console.log("There was an error white fetching signal", err);
+  }
+};
+
+module.exports.deleteSignal = async (req, res, next) => {
+  //   const errors = validationResult(req);
+
+  //   if (!errors.isEmpty()) {
+  //     return res.status(400).json({ errors: errors.array() });
+  //   }
+
+  const signal = req.body;
+
+  try {
+    await Signal.create(signal);
+
+    res.status(400).json({
+      message: `Sucessfully created the ${signal.name} signal`,
+    });
+  } catch (err) {
+    console.log("There was an error white fetching signal", err);
+  }
+};

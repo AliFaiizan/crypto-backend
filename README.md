@@ -4,7 +4,7 @@
 
 ## Description
 
-This is the backend end of metabase
+This is the backend end of mobile application and metabase
 
 ## Installation
 
@@ -21,4 +21,4 @@ $ npm run start
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).

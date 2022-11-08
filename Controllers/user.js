@@ -98,23 +98,14 @@ module.exports.login= async (req,res,next)=>{
     const password=req.body.password;
 
     try{
-        const user=await User.findOne({email})
-    
-        if(!user){
-            throw new Error('User Does not Exists');
-        }
-    
-        const check=bcrypt.compareSync(password,user.password)
-    
-        if(!check){
-            throw new Error('Password is incorrect');
-        }
 
-       const authToken = GenerateAuthToken({ id: user._id.toString() }, "30m");
+        const user = await User.findByCredentials(email, password);
+        const token = user.generateAuthToken({id:user._id.toString()},'10d');
+
 
        res.status(200).json({
         userid:user._id,
-        token:authToken
+        token
        })
 
     }catch(err){
