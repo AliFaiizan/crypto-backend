@@ -16,11 +16,11 @@ module.exports.getSignal = async (req, res, next) => {
 };
 
 module.exports.postSignal = async (req, res, next) => {
-//   const errors = validationResult(req);
+  const errors = validationResult(req);
 
-//   if (!errors.isEmpty()) {
-//     return res.status(400).json({ errors: errors.array() });
-//   }
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
     const signal= req.body;
 
@@ -37,39 +37,40 @@ module.exports.postSignal = async (req, res, next) => {
 
 
 module.exports.updateSignal = async (req, res, next) => {
-  //   const errors = validationResult(req);
+    const errors = validationResult(req);
 
-  //   if (!errors.isEmpty()) {
-  //     return res.status(400).json({ errors: errors.array() });
-  //   }
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
   const signal = req.body;
 
   try {
-    await Signal.create(signal);
+    await Signal.findOneAndUpdate({ _id: signal._id }, signal);
+    
 
     res.status(400).json({
       message: `Sucessfully created the ${signal.name} signal`,
     });
   } catch (err) {
-    console.log("There was an error white fetching signal", err);
+    console.log("There was an error while fetching signal", err);
   }
 };
 
 module.exports.deleteSignal = async (req, res, next) => {
-  //   const errors = validationResult(req);
+    const errors = validationResult(req);
 
-  //   if (!errors.isEmpty()) {
-  //     return res.status(400).json({ errors: errors.array() });
-  //   }
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-  const signal = req.body;
+  const id = req.params.id;
 
   try {
-    await Signal.create(signal);
+    await Signal.remove(id);
 
     res.status(400).json({
-      message: `Sucessfully created the ${signal.name} signal`,
+      message: `Sucessfully created the ${id} signal`,
     });
   } catch (err) {
     console.log("There was an error white fetching signal", err);
