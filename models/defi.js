@@ -24,5 +24,6 @@ const defi =await Defi.find();
   return defi;
 };
 
+const Defi = mongoose.model("Defi", defiSchema);
 
-module.exports = mongoose.model("Signal", defiSchema);
+module.exports = Defi;

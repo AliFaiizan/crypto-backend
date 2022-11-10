@@ -33,5 +33,5 @@ const signalSchema = mongoose.Schema(
         timestamps: true,
     }
 );
-
-module.exports = mongoose.model("Signal", signalSchema);
+const Signal = mongoose.model("Signal", signalSchema);
+module.exports =Signal;
