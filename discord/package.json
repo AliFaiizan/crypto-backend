@@ -1,0 +1,14 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "This is the bot for discord  to handle events",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ali Faizan",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
