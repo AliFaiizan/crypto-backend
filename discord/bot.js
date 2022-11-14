@@ -25,6 +25,7 @@ for (const file of commandFiles) {
     );
   }
 }
+
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -56,42 +57,25 @@ const rest = new REST({ version: "10" }).setToken(token);
   }
 })();
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+// Register all events in the events folder
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs
+  .readdirSync(eventsPath)
+  .filter((file) => file.endsWith(".js"));
 
-//this will check if the interation is with a command and not a message interaction
-//otherwise it will ignore it
-client.on(Events.InteractionCreate, (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-  console.log(interaction);
-});
-
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-
-  const command = interaction.client.commands.get(interaction.commandName);
-
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args));
   }
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-  }
-});
+}
 
 
 
 client.login(token);
-
 
 
 // Grab all the command files from the commands directory you created earlier
