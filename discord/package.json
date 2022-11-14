@@ -4,7 +4,8 @@
   "description": "This is the bot for discord  to handle events",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run":"nodemon bot.js"
   },
   "author": "Ali Faizan",
   "license": "ISC",
