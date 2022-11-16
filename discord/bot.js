@@ -1,8 +1,10 @@
 const { clientId, guildId, token } = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
+const  fetch = require("node-fetch");
 
-const { Client, GatewayIntentBits, Collection, Events, REST, Routes } = require("discord.js");
+
+const { Client, GatewayIntentBits, Collection, REST, Routes } = require("discord.js");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const commands = [];
@@ -79,5 +81,6 @@ client.login(token);
 
 
 // Grab all the command files from the commands directory you created earlier
+
 
 
