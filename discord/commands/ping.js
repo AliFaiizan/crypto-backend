@@ -16,9 +16,8 @@ module.exports = {
      return data
    };
     const data= await getSignal();
-    console.log(data);
     await interaction.reply(
-      `${data[0].name} ${data[0].currentPrice}  ${data[0].entry} ${data[0].stopLoss} ${data[0].targets[0].value} ${data[0].targets[0].roi} ${data[0].info[0]} ${data[0].availableExchanges[0]}`
+      `${data[0].name} ${data[0].currentPrice}  entry : ${data[0].entry} stopLoss: ${data[0].stopLoss} Targets:${data[0].targets[0].value} ROI:${data[0].targets[0].roi} Info:${data[0].info[0]} ${data[0].availableExchanges[0]}`
     );
   },
 };
