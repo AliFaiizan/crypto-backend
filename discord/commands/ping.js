@@ -17,7 +17,14 @@ module.exports = {
    };
     const data= await getSignal();
     await interaction.reply(
-      `${data[0].name} ${data[0].currentPrice}  entry : ${data[0].entry} stopLoss: ${data[0].stopLoss} Targets:${data[0].targets[0].value} ROI:${data[0].targets[0].roi} Info:${data[0].info[0]} ${data[0].availableExchanges[0]}`
+      `      ${data[0].name}/USDT 
+      price: ${data[0].currentPrice}  
+      entry: ${data[0].entry} 
+      stopLoss: ${data[0].stopLoss} 
+      Targets: ${data[0].targets[0].value} 
+      ROI: ${data[0].targets[0].roi} 
+      Info: ${data[0].info[0]}
+      Recomended Exchange: ${data[0].availableExchanges[0]}`
     );
   },
 };
