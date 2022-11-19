@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const Defi = require("../models/defi");
 
-module.exports.getSignal = async (req, res, next) => {
+module.exports.getDefi = async (req, res, next) => {
   try {
     const defi = await Defi.getAllProjects()
     console.log(defi);
