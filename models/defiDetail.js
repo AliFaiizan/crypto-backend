@@ -11,13 +11,17 @@ const defiDetailSchema = mongoose.Schema(
     dailyRoi: Number,
     monthlyRoi: Number,
     lastWeekRoi: Number,
-
+    projects:[
+        {
+            ref: "Defi"
+        }
+    ]
   },
   {
     timestamps: true,
   }
 );
-
+// defi project
 
 
 const DefiDetail = mongoose.model("DefiDetail", defiDetailSchema);
