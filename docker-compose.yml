@@ -3,7 +3,7 @@ version: "3"
 services:
     mongodb:
         image: mongo:latest
-        container_name: socialnetworkdb
+        container_name: mongodb
         restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: ali
@@ -13,3 +13,36 @@ services:
             - 27017:27017
         volumes:
             - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+    api:
+        build: ./api
+        container_name: apibackend
+        restart: always
+        ports:
+            - 4000:4000
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=ali
+            - MONGO_INITDB_ROOT_PASSWORD=ali
+            - MONGO_INITDB_DATABASE=cryptobox
+            - MONGO_INITDB_HOST=mongodb
+            - MONGO_INITDB_PORT=27017
+        depends_on:
+            - mongodb
+    
+    frontend:
+        build: ./frontend
+        container_name: frontend
+        restart: always
+        ports:
+            - 80:3000
+        depends_on:
+            - api
+    
+    discordbot:
+        build: ./discordbot
+        container_name: discordbot
+        restart: always
+        ports:
+            - 8000:8000
+        depends_on:
+            - api
