@@ -89,7 +89,7 @@
     --color-12           : rgba(255, 255, 255, 0.1);
     --color-10          : #fff;
     --color-11          : rgba(255, 255, 255, 0.1);
-    --primary-color5: #fff;
+    --primary-color5: #4d194d;
     --border-color-2    : rgba(255, 255, 255, 0.12);
     --bg-newletter: #222232;
 }
@@ -1155,7 +1155,7 @@ blockquote .author::before {
     text-align: center;
     border: 0px;
     background-size: 200% auto;
-    background-image : linear-gradient(130.35deg, #4d194d 17.35%, #3d143d78.23%);
+    background-image : linear-gradient(130.35deg, #4d194d 17.35%, #3d143d 78.23%);
     color: #fff;
     opacity: 0;
     border: unset;
@@ -1176,7 +1176,7 @@ blockquote .author::before {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-image: linear-gradient(130.35deg, #4d194d 17.35%, var(--primary-color3) 78.23%);
+    background-image: linear-gradient(130.35deg, #4d194d 17.35%, #064663 78.23%);
     opacity: 0;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
