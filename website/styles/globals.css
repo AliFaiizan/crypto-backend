@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@100;200;300;400,500,700,900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -6,21 +13,14 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.nft-gradient{
+  background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
 }
 
-* {
-  box-sizing: border-box;
+.white.bg{
+  background:rgba(255,255,255,0.2)
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.nav-h{
+  height:calc(100vh - 66px);
 }
