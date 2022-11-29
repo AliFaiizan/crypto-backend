@@ -52,8 +52,8 @@ const Header = () => {
                             <div id="site-logo" className="clearfix">
                                 <div id="site-logo-inner">
                                     <Link to="/" rel="home" className="main-logo">
-                                        <img id="logo_header" className='logo-dark' src={logo} srcSet={logo2x} alt="nft-gaming" />
-                                        <img id="logo_header" className='logo-light' src={logolight} srcSet={logolight2x} alt="nft-gaming" />
+                                        <img id="logo_header" className='logo-dark' src={logo} srcSet={logo2x} alt="Meta" />
+                                        <img id="logo_header" className='logo-light' src={logolight} srcSet={logolight2x} alt="Meta" />
                                     </Link>
                                 </div>
                             </div>
