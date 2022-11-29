@@ -36,20 +36,21 @@
 .ball{
   top: 2px;
   left: 2px;
-  transform:transform 0.2s linear;
+  transition: transform 0.2s linear;
 }
 
 /* Target the element after the label */
 .checkbox:checked+.label .ball{
   transform:translateX(16px);
-  background-color:#4d194d;
+  background-color:white;
 }
 .fa-moon{
-  color:rgb(163, 149, 149);
+  color:pink;
+  font-size: 10px;
 }
 .fa-sun{
   color:#f1c40f;  
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .flexCenter{
