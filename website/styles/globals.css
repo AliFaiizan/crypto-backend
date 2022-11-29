@@ -5,14 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
 .nft-gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
 }
@@ -24,3 +16,97 @@ body {
 .nav-h{
   height:calc(100vh - 66px);
 }
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+/* Hide scrollbar for IE edge firefox */
+.no-scrollbar{
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: auto; 
+}
+.checkbox{
+  opacity:0;
+  position:absolute;
+}
+.label{
+  transform: scale(1.5);
+}
+.ball{
+  top: 2px;
+  left: 2px;
+  transform:transform 0.2s linear;
+}
+
+/* Target the element after the label */
+.checkbox:checked+.label .ball{
+  transform:translateX(16px);
+  background-color:#4d194d;
+}
+.fa-moon{
+  color:rgb(163, 149, 149);
+}
+.fa-sun{
+  color:#f1c40f;  
+  font-size: 9px;
+}
+
+.flexCenter{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.flexBetween{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.flexStart{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+.flexStartCenter{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+}
+
+.flexBetweenStart{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
+ 
+.flexCenterStart{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.animated{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s ;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 500ms;
+  animation-duration: 500ms ;
+}
+.fadeIn{
+  --webkit-animation: fadeIn;
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+  
