@@ -5,7 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.nft-gradient{
+.gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
 }
 
