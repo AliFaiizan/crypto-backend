@@ -66,6 +66,7 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [active, setActive] = useState('Home');
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b  dark:w-dark bg-white dark:bg-w-black-1 w-grey-1">
       <div className="flex flex-1 flex-row justify-Start">
@@ -74,12 +75,7 @@ const Navbar = () => {
             className="flexCenter md:hidden cursor-pointer "
             onClick={() => {}}
           >
-            <Image
-              src={images.logo02}
-              width={32}
-              height={32}
-              alt="logo"
-            />
+            <Image src={images.logo02} width={32} height={32} alt="logo" />
             <p className="dark:text-white text-w-black-1 font-semibold text-lg ml-1">
               DOMINION
             </p>
@@ -123,6 +119,42 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <div className="hidden md:flex ml-2">
+        {isOpen ? (
+          <Image
+            src={images.cross}
+            width={20}
+            height={20}
+            alt="Close"
+            className={theme === 'light' && 'filter invert'}
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          />
+        ) : (
+          <Image
+            src={images.menu}
+            width={25}
+            height={25}
+            alt="menu"
+            className={theme === 'light' && 'filter invert'}
+            onClick={() => {
+              setIsOpen(true);
+            }}
+          />
+        )}
+      </div>
+      {isOpen && (
+        <div className="">
+          <div>
+            <MenuItems isMobile active={active} setActive={setActive} />
+          </div>
+          <div className="p-4 border-t dark:border-w-black-1 border-w-grey-1 ">
+            <ButtonGroup setActive={setActive} router={router} />
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
