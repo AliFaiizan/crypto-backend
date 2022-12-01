@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
@@ -68,7 +68,7 @@ const Navbar = () => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b  dark:w-dark bg-white dark:bg-w-black-1 w-grey-1">
+    <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b dark:border-w-grey-2  dark:w-dark bg-white dark:bg-w-black-1 w-grey-1">
       <div className="flex flex-1 flex-row justify-Start">
         <Link href="/">
           <div
@@ -146,8 +146,8 @@ const Navbar = () => {
         )}
       </div>
       {isOpen && (
-        <div className="">
-          <div>
+        <div className="fixed inset-0 top-65 nav-h z-10 dark:bg-w-dark bg-white flex flex-col justify-between">
+          <div className="flex-1 p4">
             <MenuItems isMobile active={active} setActive={setActive} />
           </div>
           <div className="p-4 border-t dark:border-w-black-1 border-w-grey-1 ">
