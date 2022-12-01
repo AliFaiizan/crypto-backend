@@ -67,7 +67,7 @@
 .flexStart{
   display:flex;
   justify-content:flex-start;
-  align-items:center;
+  align-items:flex-start;
 }
 
 .flexStartCenter{
@@ -100,6 +100,7 @@
 .fadeIn{
   --webkit-animation: fadeIn;
   animation-name: fadeIn;
+  animation-duration:0.7s
 }
 
 @keyframes fadeIn {
