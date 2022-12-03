@@ -30,7 +30,7 @@ const MenuItems = ({ isMobile, active, setActive }) => {
             setActive(item);
           }}
           className={`flex flex-row items-center font-poppins font-semibold text-base dark:hover:text-white hover:text-w-dark mx-3 ${active === item
-            ? 'dark:text-white text-w-black-1'
+            ? 'text-color'
             : 'dark:text-w-grey-3 text-w-grey-2'} `}
         >
           <Link href={generateLink(i)}>{item}</Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
             onClick={() => {}}
           >
             <Image src={images.logo02} width={32} height={32} alt="logo" />
-            <p className="dark:text-white text-w-black-1 font-semibold text-lg ml-1">
+            <p className="text-color font-semibold text-lg ml-1">
               DOMINION
             </p>
           </div>

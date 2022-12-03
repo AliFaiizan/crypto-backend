@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.text-color{
+  @apply dark:text-white text-w-black-1;
+}
+.bg-color{
+  @apply dark:bg-w-black-2 bg-white
+}
+.border-color{
+  @apply dark:border-w-black-1 border-w-grey-1
+}
+
 .gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
 }
