@@ -33,7 +33,7 @@ const Footer = () => {
             </p>
           </div>
           <p className="font-poppins text-color font-semibold text-base mt-6">
-            Get the latest Updates
+            Subscribe The News letter and Get The Latest Updates
           </p>
           <div className="flexBetween md:w-full minlg:w-557 w-357 mt-6 bg-color border border-color rounded-md">
             <input
@@ -51,7 +51,7 @@ const Footer = () => {
         {/* 2nd column */}
         <div className="flex flex-1 flexBetweenStart flex-wrap ml-10 md:ml-0 md:mt-8">
           <FooterLinks
-            heading="Dominion"
+            heading="Services"
             items={['Home', 'Education', 'Signals', 'Defi']}
           />
           <FooterLinks

@@ -18,9 +18,25 @@
 
 .gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
+ 
 }
 
-.white.bg{
+button:hover{
+  background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
+  background-size:  200% 200%;
+  animation: gradient-animation .5s ease forwards;
+}
+@keyframes gradient-animation{
+  0% {
+    background-position: 57%;
+  }
+  100% {
+    
+    background-position: 100%;
+  }
+}
+
+.white-bg{
   background:rgba(255,255,255,0.2)
 }
 
