@@ -5,7 +5,7 @@ const Banner = ({ name, styles, substyles }) => (
   <div
     className={`relative w-full flex items-center z-0 overflow-hidden gradient ${styles} `}
   >
-    <p className={` ${substyles} font-bold text-5xl font-poppins leading-70`}>
+    <p className={` ${substyles} font-bold text-5xl xs:text-xl font-poppins leading-70`}>
       {name}
     </p>
     <motion.div
