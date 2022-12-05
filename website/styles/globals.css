@@ -18,14 +18,18 @@
 
 .gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
- 
 }
+.rgradient{
+  background: linear-gradient(101.12deg, #4d194d 27.35%, #064663 99.99%);
+}
+
 
 button:hover{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
   background-size:  200% 200%;
-  animation: gradient-animation .5s ease forwards;
+  animation: gradient-animation .5s ease-in-out forwards;
 }
+
 @keyframes gradient-animation{
   0% {
     background-position: 57%;

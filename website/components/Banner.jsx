@@ -19,13 +19,12 @@ const Banner = ({ name, styles, substyles }) => (
       className="absolute w-48 h-48 sm:w-32 sm:-32 rounded-full white-bg -top-9 -left-16 "
     />
     <motion.div
-      animate={{ x: [-100, 50, 80, -100], y: [10, -50, 80, 10], scale: 1 }}
+      animate={{ x: [-100, 50, 80, -100], y: [50, -90, 120, 50] }}
       transition={{
-        duration: 40,
+        duration: 50,
         delay: 0.3,
         repeat: Infinity,
       }}
-      initial={{ scale: 0.5 }}
       className="absolute w-72 h-72 sm:w-32 sm:h-32 rounded-full white-bg -bottom-24 -right-16 "
     />
   </div>
