@@ -3,11 +3,16 @@ import { useRouter } from 'next/router';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { Button } from '../../components';
+import { Input, Button } from '../../components';
 import images from '../../assets';
 
 const createNft = () => {
   const [fileUrl, setFileURl] = useState(null);
+  const [formInput, setformInput] = useState({
+    price: '',
+    name: '',
+    description: '',
+  });
   const { theme } = useTheme();
 
   const onDrop = useCallback(() => {
@@ -27,7 +32,7 @@ const createNft = () => {
     ${isDragReject && 'border-file-reject'}`, [isDragAccept, isDragActive, isDragReject]);
   return (
     <div className="flex justify-center sm:px-4 p-12">
-      <div className="md:w-full :w-4/5">
+      <div className="md:w-full w-4/5">
         <h1 className="font-poppins text-color text-2xl minlg:text-4xl font-semibold ml-4 sx:ml-0">
           Create NFT
         </h1>
@@ -60,13 +65,38 @@ const createNft = () => {
               </div>
             </div>
             {fileUrl && (
-            <aside>
-              <div>
-                <img src="fileUrl" alt="asset" />
-              </div>
-            </aside>
+              <aside>
+                <div>
+                  <img src="fileUrl" alt="asset" />
+                </div>
+              </aside>
             )}
           </div>
+        </div>
+        <Input
+          type="input"
+          title="Name"
+          placeholder="NFT name"
+          handleClick={(e) => setformInput({ ...formInput, name: e.target.value })}
+        />
+        <Input
+          type="textarea"
+          title="Description"
+          placeholder="Describe something about your NFT"
+          handleClick={(e) => setformInput({ ...formInput, description: e.target.value })}
+        />
+        <Input
+          type="number"
+          title="Price"
+          placeholder="Price"
+          handleClick={(e) => setformInput({ ...formInput, price: e.target.value })}
+        />
+        <div className="mt-7 w-full flex justify-end">
+          <Button
+            btnName="Create NFT"
+            className="rounded-xl"
+            handleClick={() => {}}
+          />
         </div>
       </div>
     </div>
