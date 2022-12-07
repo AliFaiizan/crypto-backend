@@ -24,6 +24,9 @@
 .sellcolor{
   color:#ff0000
 }
+.width60{
+  width:60%;
+}
 
 .gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);
