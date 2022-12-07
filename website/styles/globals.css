@@ -15,6 +15,15 @@
 .border-color{
   @apply dark:border-w-black-1 border-w-grey-1
 }
+.buy {
+  background-color:#90EE90 
+}
+.buycolor{
+  color:#258625
+}
+.sellcolor{
+  color:#ff0000
+}
 
 .gradient{
   background: linear-gradient(101.12deg, #064663 27.35%, #4d194d 99.99%);

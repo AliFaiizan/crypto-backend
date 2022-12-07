@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { Banner, CreatorCard, NFTCard } from '../components';
+import { Banner, CreatorCard, NFTCard, SignalCard } from '../components';
 import images from '../assets';
 import { makeId } from '../utils/makeId';
 
@@ -89,7 +89,35 @@ const Home = () => {
             </div>
           </div>
         </div>
-
+        {/* SignalCard */}
+        <div className="mt-10">
+          <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start">
+            <h1 className=" flex-1 before:first:font-poppins text-color text-2xl minlg:text-4xl font-semibold sm:mb-4">
+              Projections
+            </h1>
+            <div>Search</div>
+          </div>
+          <div className="mt-3 w-full flex flex-wrap justify-start md:justify-evenly">
+            {[1, 2, 3].map((i) => (
+              <SignalCard
+                key={`sig${i}`}
+                signal={{
+                  i,
+                  icon: 'https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png',
+                  name: 'ADA/USDT',
+                  entry: '1.23',
+                  stop: '1.12',
+                  targets: ['1.34', '1.45'],
+                  price: 0.13 * i,
+                  createdAt: '10 May, 12:00 PM',
+                  info: ['portfolio allocation 4%'],
+                  description: 'Best NFT',
+                }}
+              />
+            ))}
+          </div>
+        </div>
+        {/* NFTCard */}
         <div className="mt-10">
           <div className="flexBetween mx-4 xs:mx-0 minlg:mx-8 sm:flex-col sm:items-start">
             <h1 className=" flex-1 before:first:font-poppins text-color text-2xl minlg:text-4xl font-semibold sm:mb-4">
@@ -118,3 +146,4 @@ const Home = () => {
   );
 };
 export default Home;
+
