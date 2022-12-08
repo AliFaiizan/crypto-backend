@@ -7,7 +7,7 @@ const SignalCard = ({ signal }) => (
     <div className="flex-row flexBetween">
       <div className=" mr-3 border dark:border-w-black-2 border-w-grey-1 p-1 rounded-lg">
         <p
-          title="Created At"
+          title="Published At"
           className="font-poppins text-color minlg:text-xl text-sm"
         >
           {signal.createdAt}
@@ -16,36 +16,57 @@ const SignalCard = ({ signal }) => (
       <div className="border dark:border-w-black-2 border-w-grey-1  p-1 rounded-lg">
         <p
           title="Current price"
-          className="font-poppins text-color minlg:text-xl text-sm  "
+          className="font-poppins text-color minlg:text-xl text-sm"
         >
-          {signal.price}000000$
+          {signal.price}$
         </p>
       </div>
     </div>
     <div className="flex flex-col flexCenter mt-1">
-      <img width={50} height={50} src={signal.icon} />
-      <p className="font-poppins text-color font-semibold minlg:text-xl text-sm mt-3">
+      <img title={signal.name} width={50} height={50} src={signal.icon} />
+      <p
+        title="Pair Name"
+        className="font-poppins text-color font-semibold minlg:text-xl text-sm mt-3"
+      >
         {signal.name}
       </p>
     </div>
 
-    <div className=" ">
-      <p className=" buycolor font-poppins minlg:text-xl text-sm border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg">
-        buy : {signal.entry}$
-      </p>
+    <div className="border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg width60">
+      <div className="flexBetween flex-row mr-1">
+        <p className="buycolor  font-poppins minlg:text-xl text-sm  ">Buy :</p>
+        <p className=" buycolor font-poppins minlg:text-xl text-sm ">
+          {signal.entry}$
+        </p>
+      </div>
     </div>
 
     {signal.targets.map((target, index) => (
-      <div className=" border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg">
-        <p className="buycolor  font-poppins minlg:text-xl text-sm  ">
-          target {index + 1} : {target}$
-        </p>
+      <div
+        title="Take profits"
+        className=" border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg"
+      >
+        <div className="flexBetween flex-row ">
+          <p className="buycolor  font-poppins minlg:text-xl text-sm  ">
+            TP {index + 1} :
+          </p>
+          <p className="buycolor  font-poppins minlg:text-xl text-sm  ">
+            {target}$
+          </p>
+          <p className="buycolor  font-poppins minlg:text-xl text-sm  ">10%</p>
+        </div>
       </div>
     ))}
-    <div className=" border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg">
-      <p className="sellcolor  font-poppins minlg:text-xl text-sm  ">
-        stop : {signal.stop}$ - {signal.stop + 0.12}$
-      </p>
+    <div
+      title="Stop Loss"
+      className=" border dark:border-w-black-2 border-w-grey-1 mt-3 p-1 rounded-lg "
+    >
+      <div className="flexBetween flex-row ">
+        <p className="sellcolor  font-poppins minlg:text-xl text-sm flex-1">SL :</p>
+        <p className="sellcolor  font-poppins minlg:text-xl text-sm flex-2">
+          {signal.stop}$ - {signal.stop}$
+        </p>
+      </div>
     </div>
     <div className="flex w-full mt-5">
       <Button btnName="More Info" styles="w-full rounded-md" />

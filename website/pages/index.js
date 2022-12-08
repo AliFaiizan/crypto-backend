@@ -9,7 +9,7 @@ const Home = () => {
   const [hideButtons, setHideButtons] = useState(false);
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const handleScroll = (direction) => {
     const { current } = scrollRef;
