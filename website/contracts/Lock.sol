@@ -41,6 +41,14 @@ contract NFT is ERC721URIStorage{
         owner = payable(msg.sender);
     }
 
+    function updateListingPrice(uint _ListingPrice) public payable{
+       require(owner==msg.sender, "Only marketplace oner can update the listing price") 
+
+       listingPrice=_ListingPrice;
+    }
+
+
+
     function awardItem(address player, string memory tokenURI)
         public
         returns (uint256)
