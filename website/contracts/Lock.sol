@@ -45,6 +45,35 @@ contract NFT is ERC721URIStorage{
        require(owner==msg.sender, "Only marketplace oner can update the listing price") 
 
        listingPrice=_ListingPrice;
+
+    }
+
+    function getlistingPrice() public view returns(uint){
+        return listingPrice;
+    }
+
+    function createToken(string memory tokenURI) public  payable returns(uint){
+        _tokenIds.increment();
+
+        uint256 newTokenId = _tokenIds.current();
+        _mint(msg.sender, newTokenId);
+        _setTokenURI(newTokenId, tokenURI);
+
+        createMarketItem(newTokenId,price);
+
+        return newTokenId;
+    }
+
+    function createMarketItem(uint256 tokenId, uint256 price) private{
+        require(price>0,"Price must be atleast 1 wei");
+        require(msg.value == listingPrice, "price must be equal to listing price");
+
+        idtoMarketItem[tokenId]=MarketItem(tokenId,payable(msg.sender),payable(address(this)),price,false);
+
+        _transfer(msg.sender,address(this),tokenId);
+
+        emit MarketItemCreated(tokenId,msg.sender,address(this),price,false);
+
     }
 
 
