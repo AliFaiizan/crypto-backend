@@ -76,7 +76,52 @@ contract NFT is ERC721URIStorage{
 
     }
 
+    function resellToken(uint256 tokenId, uint256 price) public payable{
+        require(idToMarketItem[tokenId].owner==msg.sender,"only owner can resel the token");
+        require(msg.value==listingPrice,"price must be equal to listing price");
 
+        idToMarketItem[tokenId].sold=false;
+        idToMarketItem[tokenId].price=price;
+        idToMarketItem[tokenId].seller=payable(msg.sender);
+        idToMarketItem[tokenId].owner=payable(address(this));
+        
+        _itemsSold.decrement();
+        _transfer(msg.sender,address(this),tokenId);
+    }
+
+    function createMarketSale(uint tokenId,uint256 price){
+        uint price=idToMarketItem[tokenId].price;
+
+        require(msg.value==price,"please submit the asking price to complete the purchase");
+
+        idToMarketItem[tokenId].owner=payable(msg.sender);
+        idToMarketItem[tokenId].sold=true;
+        idToMarketItem[tokenId].seller=payable(address(0));
+
+        _itemSold.increment();
+
+        _transfer(address(this),msg.sender,tokenId);
+        payable(owner).transfer(listingPrice);
+
+        payable(idToMarketItem[tokenId].seller).transfer(msg.value);
+    }
+
+    function fetchMarketItems() public view returns(MarketItem[] memory){
+        uint itemCount=_tokenIds.current();
+        uint unsoldItemCount=_tokenIds.current()-_itemSold.current();
+        uint currentIndex=0;
+ 
+        MarketItem[] memory items=new MarketItem[](unsoldItemCount);
+        for(uint i=0;i<itemCount;i++){
+            if(idToMarketItem[i+1].owner==address(this)){
+                uint currentId=i+1;
+                MarketItem storage currentItem=idToMarketItem[currentId];
+                items[currentIndex]=currentItem;
+                currentIndex+=1;
+            }
+        }
+        return items;
+    }
 
     function awardItem(address player, string memory tokenURI)
         public
