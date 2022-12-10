@@ -76,6 +76,18 @@ contract NFT is ERC721URIStorage{
 
     }
 
+    function resellToken(uint256 tokenId, uint256 price) public payable{
+        require(idToMarketItem[tokenId].owner==msg.sender,"only owner can resel the token");
+        require(msg.value==listingPrice,"price must be equal to listing price");
+
+        idToMarketItem[tokenId].sold=false;
+        idToMarketItem[tokenId].price=price;
+        idToMarketItem[tokenId].seller=payable(msg.sender);
+        idToMarketItem[tokenId].owner=payable(address(this));
+        
+        _itemsSold.decrement();
+        _transfer(msg.sender,address(this),tokenId);
+    }
 
 
     function awardItem(address player, string memory tokenURI)
