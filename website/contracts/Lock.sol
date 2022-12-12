@@ -167,16 +167,16 @@ contract NFT is ERC721URIStorage{
         return items;
     }
 
-    function awardItem(address player, string memory tokenURI)
-        public
-        returns (uint256)
-    {
-        _tokenIds.increment();
+    // function awardItem(address player, string memory tokenURI)
+    //     public
+    //     returns (uint256)
+    // {
+    //     _tokenIds.increment();
 
-        uint256 newItemId = _tokenIds.current();
-        _mint(player, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+    //     uint256 newItemId = _tokenIds.current();
+    //     _mint(player, newItemId);
+    //     _setTokenURI(newItemId, tokenURI);
 
-        return newItemId;
-    }
+    //     return newItemId;
+    // }
 }
