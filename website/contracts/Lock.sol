@@ -122,7 +122,7 @@ contract NFT is ERC721URIStorage{
         }
         return items;
     }
-
+     //fetching all nfs
     function fetchMyNFTs() public view return (MarketItem[] memory){
         uint totalItemCount=_tokenIds.current();
         uint itemCount=0;
