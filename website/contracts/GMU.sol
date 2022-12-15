@@ -1,5 +1,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 
+//code for the trc20 token
+
 abstract contract ERC20_STD{
 
     function name() public view virtual returns (string)
@@ -52,7 +54,7 @@ contract MyERC20 is ERC20_STD,Ownership{
 
     mapping(address => uint256) tokenBalances;
     mapping(address => mapping(address=>uint256)) allowed;
-
+    
     constructor(address minter_){
         _name="GrandMeta";
         _symbol="GMU";
