@@ -51,7 +51,7 @@ contract NFT is ERC721URIStorage{
 
     function createToken(string memory tokenURI,uint256 price) public  payable returns(uint){
         //check for price first before minting the token
-        require(msg.value>0,"Price must be atleast 1 wei");
+        // require(msg.value>0,"Price must be atleast 1 wei");
         require(msg.value == listingPrice, "price must be equal to listing price");
 
         _tokenIds.increment();
@@ -77,13 +77,13 @@ contract NFT is ERC721URIStorage{
     }
 
     function resellToken(uint256 tokenId, uint256 price) public payable{
-        require(idToMarketItem[tokenId].owner==msg.sender,"only owner can resel the token");
+        require(idToMarketItem[tokenId].owner==msg.sender,"only owner can resell the token");
         require(msg.value==listingPrice,"price must be equal to listing price");
 
         idToMarketItem[tokenId].sold=false;
         idToMarketItem[tokenId].price=price;
-        idToMarketItem[tokenId].seller=payable(msg.sender);
-        idToMarketItem[tokenId].owner=payable(address(this));
+        idToMarketItem[tokenId].seller=payable(msg.sender); //seller is person
+        idToMarketItem[tokenId].owner=payable(address(this));//buyer is market
         
         _itemsSold.decrement();
         _transfer(msg.sender,address(this),tokenId);
@@ -93,16 +93,17 @@ contract NFT is ERC721URIStorage{
         uint price=idToMarketItem[tokenId].price;
 
         require(msg.value==price,"please submit the asking price to complete the purchase");
-
+        // crete sale from market to the buyer
         idToMarketItem[tokenId].owner=payable(msg.sender);
         idToMarketItem[tokenId].sold=true;
         idToMarketItem[tokenId].seller=payable(address(0));
 
         _itemSold.increment();
-
+        // transfer the ownership
         _transfer(address(this),msg.sender,tokenId);
+        //take ether from buyer
         payable(owner).transfer(listingPrice);
-
+        // and send it to the seller
         payable(idToMarketItem[tokenId].seller).transfer(msg.value);
     }
 
@@ -128,7 +129,7 @@ contract NFT is ERC721URIStorage{
         uint itemCount=0;
         uint currentIndex=0;
 
-        for(uint i=0;i<total;i++){
+        for(uint i=0;i<totalItemCount;i++){
             if(idToMarketItem[i+1].owner==msg.sender){
                 itemCount+=1;
             }
@@ -167,16 +168,16 @@ contract NFT is ERC721URIStorage{
         return items;
     }
 
-    function awardItem(address player, string memory tokenURI)
-        public
-        returns (uint256)
-    {
-        _tokenIds.increment();
+    // function awardItem(address player, string memory tokenURI)
+    //     public
+    //     returns (uint256)
+    // {
+    //     _tokenIds.increment();
 
-        uint256 newItemId = _tokenIds.current();
-        _mint(player, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+    //     uint256 newItemId = _tokenIds.current();
+    //     _mint(player, newItemId);
+    //     _setTokenURI(newItemId, tokenURI);
 
-        return newItemId;
-    }
+    //     return newItemId;
+    // }
 }
