@@ -1,9 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
-
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -42,7 +39,7 @@ contract NFT is ERC721URIStorage{
     }
 
     function updateListingPrice(uint _ListingPrice) public payable{
-       require(owner==msg.sender, "Only marketplace oner can update the listing price") 
+       require(owner == msg.sender, "Only marketplace owner can update the listing price") 
 
        listingPrice=_ListingPrice;
 
@@ -52,7 +49,11 @@ contract NFT is ERC721URIStorage{
         return listingPrice;
     }
 
-    function createToken(string memory tokenURI) public  payable returns(uint){
+    function createToken(string memory tokenURI,uint256 price) public  payable returns(uint){
+        //check for price first before minting the token
+        require(msg.value>0,"Price must be atleast 1 wei");
+        require(msg.value == listingPrice, "price must be equal to listing price");
+
         _tokenIds.increment();
 
         uint256 newTokenId = _tokenIds.current();
@@ -65,9 +66,8 @@ contract NFT is ERC721URIStorage{
     }
 
     function createMarketItem(uint256 tokenId, uint256 price) private{
-        require(price>0,"Price must be atleast 1 wei");
-        require(msg.value == listingPrice, "price must be equal to listing price");
 
+        // As the token is minted now we will tranfer it to the buyer address
         idtoMarketItem[tokenId]=MarketItem(tokenId,payable(msg.sender),payable(address(this)),price,false);
 
         _transfer(msg.sender,address(this),tokenId);
