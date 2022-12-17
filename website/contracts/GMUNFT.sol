@@ -27,7 +27,6 @@ contract GMUNFT is ERC721URIStorage{
     }
 
     event MarketItemCreated(
-        uint indexed itemId,
         uint indexed tokenId,
         address seller,
         address owner,
@@ -68,7 +67,7 @@ contract GMUNFT is ERC721URIStorage{
     function createMarketItem(uint256 tokenId, uint256 price) private{
 
         // As the token is minted now we will tranfer it to the buyer address
-        idtoMarketItem[tokenId]=MarketItem(tokenId,payable(msg.sender),payable(address(this)),price,false);
+        idToMarketItem[tokenId]=MarketItem(tokenId,payable(msg.sender),payable(address(this)),price,false);
 
         _transfer(msg.sender,address(this),tokenId);
 
@@ -88,17 +87,17 @@ contract GMUNFT is ERC721URIStorage{
         _itemsSold.decrement();
         _transfer(msg.sender,address(this),tokenId);
     }
+    //This will execute the sale 
+    function createMarketSale(uint tokenId,uint256 price)public payable{
+        uint tokenPrice=idToMarketItem[tokenId].price;
 
-    function createMarketSale(uint tokenId,uint256 price){
-        uint price=idToMarketItem[tokenId].price;
-
-        require(msg.value==price,"please submit the asking price to complete the purchase");
+        require(msg.value==tokenPrice,"please submit the asking price to complete the purchase");
         // crete sale from market to the buyer
         idToMarketItem[tokenId].owner=payable(msg.sender);
         idToMarketItem[tokenId].sold=true;
         idToMarketItem[tokenId].seller=payable(address(0));
 
-        _itemSold.increment();
+        _itemsSold.increment();
         // transfer the ownership
         _transfer(address(this),msg.sender,tokenId);
         //take ether from buyer
@@ -109,7 +108,7 @@ contract GMUNFT is ERC721URIStorage{
 
     function fetchMarketItems() public view returns(MarketItem[] memory){
         uint itemCount=_tokenIds.current();
-        uint unsoldItemCount=_tokenIds.current()-_itemSold.current();
+        uint unsoldItemCount=_tokenIds.current()-_itemsSold.current();
         uint currentIndex=0;
  
         MarketItem[] memory items=new MarketItem[](unsoldItemCount);
@@ -124,7 +123,7 @@ contract GMUNFT is ERC721URIStorage{
         return items;
     }
      //fetching all nfs
-    function fetchMyNFTs() public view return (MarketItem[] memory){
+    function fetchMyNFTs() public view returns (MarketItem[] memory){
         uint totalItemCount=_tokenIds.current();
         uint itemCount=0;
         uint currentIndex=0;
@@ -146,7 +145,7 @@ contract GMUNFT is ERC721URIStorage{
         return items;
     }
 
-    function fetchItemsListed()public view returns (marketItems[] memory){
+    function fetchItemsListed()public view returns (MarketItem[] memory){
         uint totalItemCount=_tokenIds.current();
         uint itemCount=0;
         uint currentIndex=0;
