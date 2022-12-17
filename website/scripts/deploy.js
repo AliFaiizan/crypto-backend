@@ -11,10 +11,11 @@ async function main() {
   const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
   const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
 
-  const lockedAmount = hre.ethers.utils.parseEther('1');
+  // const lockedAmount = hre.ethers.utils.parseEther('1');
 
   const GMUNFT = await hre.ethers.getContractFactory('GMUNFT');
-  const gmunft = await GMUNFT.deploy(unlockTime, { value: lockedAmount });
+  // unlockTime, { value: lockedAmount }
+  const gmunft = await GMUNFT.deploy();
 
   await gmunft.deployed();
 

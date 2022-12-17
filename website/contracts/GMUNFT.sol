@@ -33,7 +33,7 @@ contract GMUNFT is ERC721URIStorage{
         uint price,
         bool sold
     );
-    constructor() ERC721("GMU tokens", "GMUN") {
+    constructor() ERC721("GMUTokens", "GMUN") {
         owner = payable(msg.sender);
     }
 
@@ -88,7 +88,7 @@ contract GMUNFT is ERC721URIStorage{
         _transfer(msg.sender,address(this),tokenId);
     }
     //This will execute the sale 
-    function createMarketSale(uint tokenId,uint256 price)public payable{
+    function createMarketSale(uint tokenId)public payable{
         uint tokenPrice=idToMarketItem[tokenId].price;
 
         require(msg.value==tokenPrice,"please submit the asking price to complete the purchase");
