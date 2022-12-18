@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import images from '../assets';
 import Button from './Button';
+
+import { NFTContext } from '../context/NFTContext';
 
 const MenuItems = ({ isMobile, active, setActive }) => {
   const generateLink = (i) => {
@@ -41,8 +43,8 @@ const MenuItems = ({ isMobile, active, setActive }) => {
 };
 
 const ButtonGroup = ({ setActive, router }) => {
-  const hasConnected = true;
-  return hasConnected ? (
+  const { connectWallet, currentAccount } = useContext(NFTContext);
+  return currentAccount ? (
     <Button
       btnName="Create"
       styles="mx-2 rounded-xl"
@@ -55,9 +57,7 @@ const ButtonGroup = ({ setActive, router }) => {
     <Button
       btnName="Connect"
       styles="mx-2 rounded-xl"
-      handleClick={() => {
-        setActive('');
-      }}
+      handleClick={connectWallet}
     />
   );
 };
@@ -67,6 +67,7 @@ const Navbar = () => {
   const [active, setActive] = useState('Home');
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="flexBetween w-full fixed z-10 p-4 flex-row border-b dark:border-w-grey-2  dark:w-dark bg-white dark:bg-w-black-1 w-grey-1">
       <div className="flex flex-1 flex-row justify-Start">

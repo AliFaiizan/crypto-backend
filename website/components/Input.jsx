@@ -1,6 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
+import { NFTContext } from '../context/NFTContext';
 
 const Input = ({ type, title, placeholder, handleClick }) => {
+  const { currency } = useContext(NFTContext);
   const inputstyles = useMemo(() => 'dark:bg-w-black-1 bg-white border border-color rounded-lg w-full outline-none font-poppins dark:text-white text-w-grey-2 text-base mt-4 px-4 py-3', []);
   return (
     <div className="mt-10 w-full">
@@ -13,7 +15,7 @@ const Input = ({ type, title, placeholder, handleClick }) => {
             placeholder={placeholder}
             onChange={handleClick}
           />
-          <p className="font-poppins text-color font-semibold text-xl">ETH</p>
+          <p className="font-poppins text-color font-semibold text-xl">{currency}</p>
         </div>
       ) : type === 'textarea' ? (
         <div className="flex flex-row">
