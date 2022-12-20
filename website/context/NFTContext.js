@@ -52,6 +52,7 @@ export const NFTProvider = ({ children }) => {
   };
   // https://cid.ipfs.tech/#QmVFUxLuFhULhNd4UEvfb5UgiJVV5aeRgUuVQrrkfFV64P  formetadata
   const uploadToIPFS = async (file) => {
+    // this will get the image that we have deployed to blockchain
     try {
       const cid = await client.add({ content: file });
       const url = `https://ipfs.io/${cid.path}`;

@@ -9,6 +9,7 @@ import images from '../../assets';
 import { NFTContext } from '../../context/NFTContext';
 
 const createNft = () => {
+  // take the global value from context
   const { uploadToIPFS } = useContext(NFTContext);
   const [fileUrl, setFileURl] = useState();
   const [formInput, setformInput] = useState({
@@ -18,6 +19,7 @@ const createNft = () => {
   });
   const { theme } = useTheme();
 
+  // when file is droped on the image uploader
   const onDrop = useCallback(async (acceptedFile) => {
     const url = await uploadToIPFS(acceptedFile[0]);
     console.log(url);
