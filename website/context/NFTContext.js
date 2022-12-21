@@ -61,6 +61,8 @@ export const NFTProvider = ({ children }) => {
       console.log('there was an Error while uploading the file');
     }
   };
+
+  // refatoring
   return (
     <NFTContext.Provider
       value={{ currency, connectWallet, currentAccount, uploadToIPFS }}
