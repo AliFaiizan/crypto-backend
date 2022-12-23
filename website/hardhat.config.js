@@ -1,9 +1,11 @@
 // require('@nomicfoundation/hardhat-toolbox');
-require('@nomiclabs/hardhat-waffle');
-const fs = require('fs');
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const privateKey = fs.readFileSync('.secret').toString().trim();
+// this is the metamask private key
+const { Ethkey } = require('./keys');
+
+require('@nomiclabs/hardhat-waffle');
+
 module.exports = {
   networks: {
     hardhat: {
