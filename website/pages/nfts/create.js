@@ -21,7 +21,7 @@ const createNft = () => {
   // when file is droped on the image uploader
   const onDrop = useCallback(async (acceptedFile) => {
     const url = await uploadToIPFS(acceptedFile[0]);
-    console.log(url);
+    // This will be the url of the image
     setFileURl(url);
   }, []);
 
