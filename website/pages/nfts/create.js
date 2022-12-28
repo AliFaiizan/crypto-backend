@@ -24,7 +24,7 @@ const createNft = () => {
     // This will be the url of the image
     setFileURl(url);
   }, []);
-
+  // this is for the drag and drop image for uft
   const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
     accept: 'image/*',
