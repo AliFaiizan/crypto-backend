@@ -44,7 +44,7 @@ const createNft = () => {
         </h1>
         <div className="mt-16">
           <p className="font-poppins text-color font-semibold text-xl">
-            Upload File
+            Upload Image
           </p>
           <div className="mt-4">
             <div {...getRootProps()} className={filestyles}>
