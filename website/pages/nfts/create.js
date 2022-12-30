@@ -66,7 +66,7 @@ const createNft = () => {
                   Drag and Drop file
                 </p>
                 <p className='className="font-poppins text-color font-semibold text-sm mt-2'>
-                  Or browse media on your device
+                  Or Browse
                 </p>
               </div>
             </div>
