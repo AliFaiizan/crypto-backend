@@ -11,7 +11,6 @@ const MyApp = ({ Component, pageProps }) => (
         <Navbar />
         <div className="pt-65">
           <Component {...pageProps} />
-
         </div>
         <Footer />
       </div>
