@@ -2,7 +2,9 @@ import React from 'react';
 
 function resell() {
   return (
-    <div>resell nft</div>
+    <div>
+      <p>Resell Nfts</p>
+    </div>
   );
 }
 
