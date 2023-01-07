@@ -12,7 +12,7 @@ contract GMUNFT is ERC721URIStorage{
     Counters.Counter private _tokenIds;
     Counters.Counter private _itemsSold;
 
-    uint256 listingPrice=0.025 ether;
+    uint256 listingPrice=1 ether;
 
     address payable owner;
 
@@ -44,7 +44,7 @@ contract GMUNFT is ERC721URIStorage{
 
     }
 
-    function getlistingPrice() public view returns(uint){
+    function getListingPrice() public view returns(uint){
         return listingPrice;
     }
 

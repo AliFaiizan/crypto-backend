@@ -10,7 +10,7 @@ import { NFTContext } from '../../context/NFTContext';
 
 const createNft = () => {
   // take the global value from context
-  const { uploadToIPFS, createNewNft } = useContext(NFTContext);
+  const { uploadToIPFS, createNewNFT } = useContext(NFTContext);
   const [fileUrl, setFileURl] = useState();
   const [formInput, setformInput] = useState({
     price: '',
@@ -105,7 +105,7 @@ const createNft = () => {
             btnName="Create NFT"
             className="rounded-xl"
             handleClick={() => {
-              createNewNft(formInput, fileUrl, router);
+              createNewNFT(formInput, fileUrl, router);
             }}
           />
         </div>

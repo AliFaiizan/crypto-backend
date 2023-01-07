@@ -2,7 +2,10 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 
 // this is the metamask private key
-const { Ethkey } = require('./keys');
+// const { Ethkey } = require('./keys');
+const fs = require('fs');
+
+const ethPrivateKey = fs.readFileSync('.secret').toString().trim();
 
 require('@nomiclabs/hardhat-waffle');
 
