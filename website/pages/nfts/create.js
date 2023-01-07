@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
 import { Input, Button } from '../../components';
 import images from '../../assets';
 
@@ -9,7 +10,7 @@ import { NFTContext } from '../../context/NFTContext';
 
 const createNft = () => {
   // take the global value from context
-  const { uploadToIPFS } = useContext(NFTContext);
+  const { uploadToIPFS, createNewNft } = useContext(NFTContext);
   const [fileUrl, setFileURl] = useState();
   const [formInput, setformInput] = useState({
     price: '',
@@ -17,11 +18,13 @@ const createNft = () => {
     description: '',
   });
   const { theme } = useTheme();
+  const router = useRouter();
 
   // when file is droped on the image uploader
   const onDrop = useCallback(async (acceptedFile) => {
     const url = await uploadToIPFS(acceptedFile[0]);
     // This will be the url of the image
+    console.log(url);
     setFileURl(url);
   }, []);
   // this is for the drag and drop image for uft
@@ -101,7 +104,9 @@ const createNft = () => {
           <Button
             btnName="Create NFT"
             className="rounded-xl"
-            handleClick={() => {}}
+            handleClick={() => {
+              createNewNft(formInput, fileUrl, router);
+            }}
           />
         </div>
       </div>
